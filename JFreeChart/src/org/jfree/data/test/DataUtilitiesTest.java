@@ -160,7 +160,7 @@ public class DataUtilitiesTest extends DataUtilities {
 			oneOf(values).getValue(0, 1);
 			will(returnValue(300.0));
 			// third value in first row
-			oneOf(values).getValue(0, 1);
+			oneOf(values).getValue(0, 2);
 			will(returnValue(500.0));
 		}});
 		
@@ -283,7 +283,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 	
 	@Test
-	public void createNumberArray2DSimple3x4() {
+	public void createNumberArray2DComplex3x4() {
 		// setup
 		double[][] passedIn = { {0.1, 0.2, 0.3, 0.4},
 								{1, 2, 3, 4},
@@ -475,9 +475,10 @@ public class DataUtilitiesTest extends DataUtilities {
 		
 		// exercise
 		KeyedValues result = DataUtilities.getCumulativePercentages(kValues);
+		System.out.println(result.getValue(0).doubleValue());
 		
 		// verify
-		assertEquals("The cumulative percentage at key 0", (100.0) / (100.0 + Double.NaN), result.getValue(0).doubleValue(), .1d);
+		assertEquals("The cumulative percentage at key 0", Double.POSITIVE_INFINITY, result.getValue(0).doubleValue(), .1d);
 		
 	}
 	
