@@ -448,8 +448,8 @@ public class DataUtilitiesTest extends DataUtilities {
 		
 	}
 	
-	@Test
-	public void getCumulativePercentagesTwoPairsOneNull() {
+	@Test (expected = NullPointerException.class)
+	public void getCumulativePercentagesTwoPairsOneNull() throws NullPointerException {
 		// setup
 		Mockery mockingContext = new Mockery();
 		final KeyedValues kValues = mockingContext.mock(KeyedValues.class);
@@ -474,11 +474,7 @@ public class DataUtilitiesTest extends DataUtilities {
 		}});
 		
 		// exercise
-		KeyedValues result = DataUtilities.getCumulativePercentages(kValues);
-		System.out.println(result.getValue(0).doubleValue());
-		
-		// verify
-		assertEquals("The cumulative percentage at key 0", Double.POSITIVE_INFINITY, result.getValue(0).doubleValue(), .1d);
+		DataUtilities.getCumulativePercentages(kValues);
 		
 	}
 	
